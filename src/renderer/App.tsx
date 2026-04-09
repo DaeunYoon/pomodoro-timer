@@ -76,7 +76,7 @@ export default function App() {
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-slate-900 text-white">
+    <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-slate-900">
       {/* Content */}
       <div className="flex-1 overflow-hidden">
         {activeTab === 'timer' && (
@@ -96,23 +96,23 @@ export default function App() {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex border-t border-slate-700 bg-slate-800">
+      <div className="flex border-t border-slate-200 bg-white shadow-sm">
         <button
           onClick={() => setActiveTab('timer')}
-          className={`flex-1 py-3 text-sm font-medium transition ${
+          className={`flex-1 py-3 text-sm font-semibold transition ${
             activeTab === 'timer'
-              ? 'bg-red-600 text-white'
-              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              ? 'bg-indigo-500 text-white border-b-2 border-indigo-500'
+              : 'text-slate-600 hover:text-slate-900 border-b-2 border-transparent'
           }`}
         >
           ⏱ Timer
         </button>
         <button
           onClick={() => setActiveTab('todo')}
-          className={`flex-1 py-3 text-sm font-medium transition ${
+          className={`flex-1 py-3 text-sm font-semibold transition ${
             activeTab === 'todo'
-              ? 'bg-blue-600 text-white'
-              : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              ? 'bg-indigo-500 text-white border-b-2 border-indigo-500'
+              : 'text-slate-600 hover:text-slate-900 border-b-2 border-transparent'
           }`}
         >
           ✓ Todo

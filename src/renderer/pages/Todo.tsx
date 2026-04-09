@@ -12,7 +12,7 @@ export default function Todo() {
     }
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleAddTodo()
     }
@@ -24,17 +24,17 @@ export default function Todo() {
     <div className="h-full flex flex-col p-6 overflow-hidden">
       {/* Header */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-2">📝 Todo List</h2>
-        <div className="text-sm text-slate-400">
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">📝 Todo List</h2>
+        <div className="text-sm text-slate-500">
           {completedCount} of {todos.length} completed
         </div>
       </div>
 
       {/* Progress Bar */}
       {todos.length > 0 && (
-        <div className="w-full bg-slate-700 rounded-full h-2 mb-6 overflow-hidden">
+        <div className="w-full bg-slate-200 rounded-full h-2 mb-6 overflow-hidden">
           <div
-            className="bg-blue-600 h-full transition-all"
+            className="bg-indigo-500 h-full transition-all"
             style={{ width: `${(completedCount / todos.length) * 100}%` }}
           />
         </div>
@@ -46,13 +46,13 @@ export default function Todo() {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyDown}
           placeholder="Add a new task..."
-          className="flex-1 px-4 py-2 bg-slate-800 rounded border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+          className="flex-1 px-4 py-2 bg-white rounded border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
         />
         <button
           onClick={handleAddTodo}
-          className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded font-semibold transition"
+          className="px-6 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded font-semibold transition shadow-md hover:shadow-lg"
         >
           Add
         </button>
@@ -61,31 +61,33 @@ export default function Todo() {
       {/* Todo List */}
       <div className="flex-1 overflow-y-auto space-y-2">
         {todos.length === 0 ? (
-          <div className="text-center text-slate-500 py-12">
+          <div className="text-center text-slate-400 py-12">
             No todos yet. Add one to get started!
           </div>
         ) : (
           todos.map((todo) => (
             <div
               key={todo.id}
-              className="flex items-center gap-3 p-3 bg-slate-800 rounded hover:bg-slate-700 transition"
+              className="flex items-center gap-3 p-3 bg-white rounded border border-slate-200 hover:border-slate-300 hover:shadow-sm transition"
             >
               <input
                 type="checkbox"
                 checked={todo.completed}
                 onChange={() => toggleTodo(todo.id)}
-                className="w-5 h-5 cursor-pointer"
+                className="w-5 h-5 cursor-pointer accent-indigo-500"
               />
               <span
                 className={`flex-1 ${
-                  todo.completed ? 'line-through text-slate-500' : 'text-white'
+                  todo.completed
+                    ? 'line-through text-slate-400'
+                    : 'text-slate-900'
                 }`}
               >
                 {todo.text}
               </span>
               <button
                 onClick={() => deleteTodo(todo.id)}
-                className="text-red-500 hover:text-red-400 transition"
+                className="text-slate-400 hover:text-red-500 transition"
               >
                 ✕
               </button>

@@ -92,6 +92,12 @@ export default function Timer({
               className="w-full px-3 py-2 bg-slate-700 rounded border border-slate-600 text-white"
             />
           </div>
+          <button 
+            onClick={() => setShowSettings(false)}
+            className="w-full px-3 py-2 bg-green-600 hover:bg-green-700 rounded font-semibold transition"
+          >
+            Finish settings
+          </button>
         </div>
       )}
     </div>

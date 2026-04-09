@@ -1,0 +1,56 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.0",
+  "description": "A native macOS Pomodoro timer with todo list",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "npm run build:main && wait-on http://localhost:5173 && electron .",
+    "build:main": "node build-main.mjs",
+    "build": "npm run build:main && vite build && electron-builder",
+    "build:app": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/node": "^20.0.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0",
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "electron-is-dev": "^2.0.0",
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "concurrently": "^8.2.0",
+    "wait-on": "^7.0.0",
+    "tsx": "^4.7.0",
+    "esbuild": "^0.19.0"
+  },
+  "build": {
+    "appId": "com.pomodoro-timer.app",
+    "productName": "Pomodoro Timer",
+    "directories": {
+      "output": "dist",
+      "buildResources": "public"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.productivity"
+    }
+  }
+}
